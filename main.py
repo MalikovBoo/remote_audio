@@ -24,7 +24,6 @@ def play_audio_online(url):
     current_player = player  # Обновляем текущий player
     player.play()
     # Даем время для начала воспроизведения и воспроизводим до конца
-    time.sleep(2)
     while player.is_playing():
         time.sleep(1)
 
