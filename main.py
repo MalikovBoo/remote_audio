@@ -44,8 +44,11 @@ def listen_for_command():
                 if text.lower() == "стоп":
                     stop_current_audio()
                 else:
-                    audio_url = get_youtube_audio_url(text)
-                    threading.Thread(target=play_audio_online, args=(audio_url,)).start()
+                    if "включи пожалуйста" in text.lower():
+                        text = text.lower().replace("включи пожалуйста", "")
+                        print(f"Вы сказали: {text}")
+                        audio_url = get_youtube_audio_url(text)
+                        threading.Thread(target=play_audio_online, args=(audio_url,)).start()
             except sr.UnknownValueError:
                 print("Не удалось распознать команду")
             except sr.RequestError:
